@@ -7,12 +7,14 @@ const ItemInfo = ({
   selectedItem,
   selectedItems,
   setSelectedItems,
+  selectedRestrictions,
 }) => {
   const [quantity, setQuantity] = useState(0);
   const [itemData, setItemData] = useState();
+  const [containAllergen, setContainAllergen] = useState(false);
 
+  // fetch item data
   useEffect(() => {
-    // fetch item data
     allItems.forEach((item) => {
       if (item.food == selectedItem) {
         setItemData(item);
@@ -66,10 +68,20 @@ const ItemInfo = ({
     setQuantity(quantity - 1);
   };
 
+  // check if allergen is in selected restrictions
+  useEffect(() => {
+    itemData?.restrictions.forEach((allergen) => {
+      if (selectedRestrictions.includes(allergen)) {
+        setContainAllergen(true);
+        return;
+      }
+    });
+  }, [selectedRestrictions, itemData]);
+
   return (
     <div className="ItemInfo">
       <img className="foodImg" src="" alt="item image" />
-      <div className="name">{itemData?.food}</div>
+      <div className="name">{containAllergen ? "⚠️" + itemData?.food : itemData?.food}</div>
       <div className="description">{itemData?.description}</div>
       <div className="restrictions">
         {itemData?.restrictions.map((e) => " #" + e)}

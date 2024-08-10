@@ -1,30 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./css/LandingPage.css";
 
-function MenuDetail({ allRestrictions, setSelectedRestrictions }) {
+function LandingPage({ allRestrictions, selectedRestrictions, setSelectedRestrictions }) {
   const navigate = useNavigate();
+  const [randomTableNumber, setRandomTableNumber] = useState(0);
+
+  useEffect(() => {
+    setRandomTableNumber(Math.floor(Math.random() * 100 + 1));
+  }, []);
+
   // handle checkbox for later usage
-  // todo
+  const handleCheckboxChange = (event) => {
+    const { target } = event;
+    const { value } = target;
+
+    if (target.checked) {
+      setSelectedRestrictions([...selectedRestrictions, value]);
+    } else {
+      setSelectedRestrictions(selectedRestrictions.filter((item) => item !== value));
+    }
+  };
 
   return (
     <div className="LandingPage">
-      <p className="Title">Samson<br/>Suta Jajang</p>
+      <p className="Title">
+        Samson
+        <br />
+        Suta Jajang
+      </p>
       <p className="Caution">⚠️ Select all food restrictions ⚠️</p>
       <div className="RestrictionsList">
         {allRestrictions.length <= 0
           ? ""
-          : allRestrictions.map((restriction) => {
+          : allRestrictions.map((restriction, index) => {
               return (
-                <div className="Restriction">
+                <div className="Restriction" key={index}>
                   <input
                     type="checkbox"
                     id={restriction}
                     name={restriction}
                     value={restriction}
+                    onChange={handleCheckboxChange}
                   />
-                  <label for={restriction}>{restriction}</label>
+                  <label htmlFor={restriction}>{restriction}</label>
                 </div>
               );
             })}
@@ -32,16 +52,19 @@ function MenuDetail({ allRestrictions, setSelectedRestrictions }) {
       <button
         className="StartBtn"
         onClick={() => {
+          selectedRestrictions.forEach(element => {
+            console.log(element);
+          });
           navigate("/Home");
         }}
       >
         Start Ordering!
       </button>
       <p className="TableNumber">
-        table number {Math.floor(Math.random() * 100 + 1)}
+        table number: {randomTableNumber}
       </p>
     </div>
   );
 }
 
-export default MenuDetail;
+export default LandingPage;

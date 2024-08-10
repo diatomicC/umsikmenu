@@ -10,6 +10,7 @@ function MenuDetail({
   selectedItems,
   setSelectedItems,
   selectedLanguage,
+  selectedRestrictions,
 }) {
   return (
     <div className="MenuDetail">
@@ -20,6 +21,7 @@ function MenuDetail({
         selectedItems={selectedItems}
         setSelectedItems={setSelectedItems}
         selectedLanguage={selectedLanguage}
+        selectedRestrictions={selectedRestrictions}
       />
       <OrderArea selectedItems={selectedItems} />
     </div>

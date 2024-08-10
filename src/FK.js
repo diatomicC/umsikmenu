@@ -68,7 +68,11 @@ function FK() {
           exact
           path="/"
           element={
-            <LandingPage allRestrictions={allRestrictions} setSelectedRestrictions={setSelectedRestrictions} />
+            <LandingPage
+              allRestrictions={allRestrictions}
+              selectedRestrictions={selectedRestrictions}
+              setSelectedRestrictions={setSelectedRestrictions}
+            />
           }
         />
         <Route
@@ -86,6 +90,7 @@ function FK() {
               setSelectedItems={setSelectedItems}
               setAllItems={setAllItems}
               setAllCategories={setAllCategories}
+              selectedRestrictions={selectedRestrictions}
             />
           }
         />
@@ -100,6 +105,7 @@ function FK() {
               selectedItems={selectedItems}
               setSelectedItems={setSelectedItems}
               selectedLanguage={selectedLanguage}
+              selectedRestrictions={selectedRestrictions}
             />
           }
         />

@@ -3,7 +3,14 @@ import MenuItem from "./MenuItem";
 
 import "../css/Menu.css";
 
-const Menu = ({ allItems, selectedCategory, selectedItems, setSelectedItems, setSelectedItem }) => {
+const Menu = ({
+  allItems,
+  selectedCategory,
+  selectedItems,
+  setSelectedItems,
+  setSelectedItem,
+  selectedRestrictions,
+}) => {
   const [items, setItems] = useState([]);
   // show all data without filtering on load
   useEffect(() => {
@@ -41,6 +48,7 @@ const Menu = ({ allItems, selectedCategory, selectedItems, setSelectedItems, set
                 setSelectedItem={setSelectedItem}
                 selectedItems={selectedItems}
                 setSelectedItems={setSelectedItems}
+                selectedRestrictions={selectedRestrictions}
               />
             );
           })}

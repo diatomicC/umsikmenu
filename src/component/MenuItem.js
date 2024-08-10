@@ -10,9 +10,11 @@ const MenuItem = ({
   setSelectedItem,
   selectedItems,
   setSelectedItems,
+  selectedRestrictions,
 }) => {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(0);
+  const [containAllergen, setContainAllergen] = useState(false);
 
   const increaseQuantity = () => {
     // find if ald selected item
@@ -60,6 +62,16 @@ const MenuItem = ({
     setQuantity(quantity - 1);
   };
 
+  // check if allergen is in selected restrictions
+  useEffect(() => {
+    allergens.forEach((allergen) => {
+      if (selectedRestrictions.includes(allergen)) {
+        setContainAllergen(true);
+        return;
+      }
+    });
+  }, [selectedRestrictions]);
+
   return (
     <div className="menu-item">
       <div className="menu-item-details">
@@ -70,7 +82,7 @@ const MenuItem = ({
             navigate("/MenuDetail");
           }}
         >
-          {name}
+          {containAllergen ? "⚠️" + name : name}
         </h2>
         <p className="menu-item-description two-row-limit">{description}</p>
         <div className="menu-item-allergens two-row-limit">

@@ -20,8 +20,8 @@ function HomePage({
   setSelectedItems,
   setAllItems,
   setAllCategories,
+  selectedRestrictions,
 }) {
-
   // read data on load, only run once
   useEffect(() => {
     const colRef = collection(db, "StoreName", "Menu", selectedLanguage); //temp
@@ -52,6 +52,7 @@ function HomePage({
         setSelectedItem={setSelectedItem}
         selectedItems={selectedItems}
         setSelectedItems={setSelectedItems}
+        selectedRestrictions={selectedRestrictions}
       />
       <OrderArea selectedItems={selectedItems} />
     </div>
