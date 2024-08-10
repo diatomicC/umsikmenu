@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { getDoc, doc } from "firebase/firestore";
 
 import { db } from "../index";
 
 const ItemInfo = ({
+  allItems,
   selectedItem,
   selectedItems,
   setSelectedItems,
-  selectedLanguage,
 }) => {
   const [quantity, setQuantity] = useState(0);
   const [itemData, setItemData] = useState();
 
   useEffect(() => {
     // fetch item data
-    getDoc(doc(db, "StoreName", "Menu", selectedLanguage, selectedItem)).then(
-      (snapshot) => {
-        setItemData(snapshot.data());
-      }
-    );
+    allItems.forEach((item) => {
+      if (item.food == selectedItem) setItemData(item);
+    });
   }, [selectedItem]);
 
   const increaseQuantity = () => {

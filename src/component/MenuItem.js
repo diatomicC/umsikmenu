@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "../css/MenuItem.css";
 
 const MenuItem = ({
-  itemID,
   name,
   description,
   price,
@@ -62,8 +61,7 @@ const MenuItem = ({
   return (
     <button
       onClick={() => {
-        console.log(itemID);
-        setSelectedItem(itemID);
+        setSelectedItem(name);
         navigate('/MenuDetail');
       }}
     >

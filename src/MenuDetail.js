@@ -5,6 +5,7 @@ import ItemInfo from "./component/ItemInfo";
 import OrderArea from "./component/OrderArea";
 
 function MenuDetail({
+  allItems,
   allCategories,
   setSelectedCategory,
   selectedItem,
@@ -20,6 +21,7 @@ function MenuDetail({
         setSelectedCategory={setSelectedCategory}
       />
       <ItemInfo
+      allItems={allItems}
         selectedItem={selectedItem}
         selectedItems={selectedItems}
         setSelectedItems={setSelectedItems}
