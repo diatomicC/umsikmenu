@@ -1,17 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getDocs, collection, doc } from "firebase/firestore";
 import Menu from "./component/Menu";
 import Banner from "./component/Banner";
 import CategorySlider from "./component/CategorySlider";
 import OrderArea from "./component/OrderArea";
 
+import { db } from "./index";
+
 function HomePage() {
-  const [selectedCategory, setSelectedCategory] = React.useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState("Korean");
+  const [allItems, setAllItems] = useState([]);
+  const [allCategories, setAllCategories] = useState([]);
+
+  // read data on load, only run once
+  useEffect(() => {
+    const colRef = collection(db, "StoreName", "Menu", selectedLanguage); //temp
+    getDocs(colRef).then((snapshot) => {
+      var tmepCatList = [];
+      snapshot.docs.forEach((doc) => {
+        // save feteched data to items
+        setAllItems([...allItems, doc.data()]);
+        if (!tmepCatList.includes(doc.data().category)) {
+          tmepCatList.push(doc.data().category);
+        }
+        setAllCategories(tmepCatList);
+      });
+    });
+  }, []);
+
   return (
-    <div className="HomePage" >
+    <div className="HomePage">
       <Banner />
-      <CategorySlider setSelectedCategory={setSelectedCategory}/>
+      <CategorySlider
+        allCategories={allCategories}
+        setSelectedCategory={setSelectedCategory}
+      />
       <p>{selectedCategory}</p>
-      <Menu />
+      <Menu allItems={allItems} selectedCategory={selectedCategory} />
       <OrderArea />
     </div>
   );

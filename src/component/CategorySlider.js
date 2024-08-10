@@ -3,13 +3,13 @@ import { CategoryCapsule } from "./CategoryCapsule";
 
 import "../css/CategorySlider.css";
 
-const CategorySlider = ({ setSelectedCategory }) => {
+const CategorySlider = ({ allCategories, setSelectedCategory }) => {
   const [categories, setCategories] = useState([]);
   // fetech category from data
   useEffect(() => {
     // todo
-    setCategories(["category 1", "category 2", "category 3"]);
-  }, []);
+    console.log(allCategories);
+  }, [allCategories]);
 
   const selectCategory = (selected) => {
     // clear selection
@@ -43,7 +43,7 @@ const CategorySlider = ({ setSelectedCategory }) => {
 
   return (
     <div className="CategorySlider">
-      {categories.map((cat, index) => {
+      {allCategories.map((cat, index) => {
         return (
           <CategoryCapsule
             key={index}

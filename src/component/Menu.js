@@ -31,30 +31,28 @@ import { db } from "../index";
 //   },
 // ];
 
-const Menu = () => {
-  // items to display
+const Menu = ({ allItems, selectedCategory }) => {
   const [items, setItems] = useState([]);
-
-  // read data on load
   useEffect(() => {
-    const colRef = collection(db, "StoreName", "Menu", "Korean"); //temp
-    getDocs(colRef).then((snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        // save feteched data to items
-        setItems([...items, doc.data()]);
+    // fetch data
+    if (selectedCategory != "") {
+      var tempList = [];
+      allItems.forEach((item) => {
+        if (item.category == selectedCategory) {
+          tempList.push(item);
+        }
       });
-    });
-  }, []);
-
-  // peek items
-  useEffect(() => {
-    console.log(items);
-  }, [items]);
+      setItems(tempList);
+    }
+    else {
+      setItems(allItems);
+    }
+  }, [selectedCategory]);
 
   return (
     <div>
       {items.length <= 0
-        ? ""
+        ? "no items"
         : items.map((item, index) => {
             return (
               <MenuItem
