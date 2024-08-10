@@ -16,6 +16,15 @@ const MenuItem = ({
   const [quantity, setQuantity] = useState(0);
   const [containAllergen, setContainAllergen] = useState(false);
 
+  // set the quantity of the item
+  useEffect(() => {
+    selectedItems.forEach((item) => {
+      if (item.name == name) {
+        setQuantity(item.quantity);
+      }
+    });
+  }, [selectedItems]);
+
   const increaseQuantity = () => {
     // find if ald selected item
     var found = -1;
@@ -24,10 +33,12 @@ const MenuItem = ({
     });
 
     if (found != -1) {
+      console.log("added value");
       const updatedItems = [...selectedItems];
       updatedItems[found].quantity++;
       setSelectedItems(updatedItems);
     } else {
+      console.log("created new ele");
       setSelectedItems([
         ...selectedItems,
         { name: name, price: price, quantity: 1 },
@@ -37,7 +48,7 @@ const MenuItem = ({
   };
 
   const decreaseQuantity = () => {
-    if (quantity == 0) return;
+    if (quantity <= 0) return;
 
     var found = -1;
     selectedItems.forEach((item, index) => {

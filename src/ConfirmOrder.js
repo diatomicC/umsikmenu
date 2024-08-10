@@ -23,13 +23,15 @@ const ConfirmOrder = ({
     setTotalPrice(total);
 
     // set item to pass
+    var tempList = [];
     selectedItems.forEach((item) => {
       allItems.forEach((allItem) => {
         if (item.name === allItem.food) {
-          setItemToPass([...itemToPass, allItem]);
+          tempList.push(allItem);
         }
       });
     });
+    setItemToPass(tempList);
   }, [selectedItems]);
 
   return (
