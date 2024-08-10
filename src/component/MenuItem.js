@@ -62,14 +62,14 @@ const MenuItem = ({
     <button
       onClick={() => {
         setSelectedItem(name);
-        navigate('/MenuDetail');
+        navigate("/MenuDetail");
       }}
     >
       <div className="menu-item">
         <div className="menu-item-details">
           <h2 className="menu-item-name">{name}</h2>
-          <p className="menu-item-description">{description}</p>
-          <div className="menu-item-allergens">
+          <p className="menu-item-description two-row-limit">{description}</p>
+          <div className="menu-item-allergens two-row-limit">
             {allergens.map((allergen, index) => (
               <span key={index} className="allergen">
                 #{allergen}

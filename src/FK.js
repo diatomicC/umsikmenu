@@ -31,9 +31,10 @@ function FK() {
             });
 
             // console.log(`Data from ${sheetName}:`, sheetData);
-            var tempList = [];
+            var tempDataList = [];
+            var tempCatList = [];
             for (let i = 1; i < sheetData.length; i++) {
-              tempList.push({
+              tempDataList.push({
                 category: sheetData[i][0],
                 food: sheetData[i][1],
                 description: sheetData[i][2],
@@ -41,8 +42,12 @@ function FK() {
                 restrictions: sheetData[i][4].split(", "),
                 ingredient: sheetData[i][5].split(", "),
               });
+              if (!tempCatList.includes(sheetData[i][0])) {
+                tempCatList.push(sheetData[i][0]);
+              }
             }
-            setAllItems(tempList);
+            setAllItems(tempDataList);
+            setAllCategories(tempCatList);
           } else return;
         });
       });

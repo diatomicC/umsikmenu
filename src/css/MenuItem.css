@@ -4,10 +4,20 @@
   align-items: center;
   padding: 15px;
   border-bottom: 1px solid #eee;
+
+  width: 320px;
+}
+
+.two-row-limit {
+  max-height: 3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .menu-item-details {
   flex: 1;
+  max-width: 70%;
 }
 
 .menu-item-name {

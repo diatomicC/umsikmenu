@@ -6,6 +6,7 @@ import CategorySlider from "./component/CategorySlider";
 import OrderArea from "./component/OrderArea";
 
 import { db } from "./index";
+import "./css/HomePage.css";
 
 function HomePage({
   selectedCategory,
@@ -44,7 +45,7 @@ function HomePage({
         allCategories={allCategories}
         setSelectedCategory={setSelectedCategory}
       />
-      <p>{selectedCategory}</p>
+      <p className="SelectedCategory">{selectedCategory}</p>
       <Menu
         allItems={allItems}
         selectedCategory={selectedCategory}

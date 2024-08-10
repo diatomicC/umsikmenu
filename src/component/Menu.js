@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import MenuItem from "./MenuItem";
 
+import "../css/Menu.css";
+
 const Menu = ({ allItems, selectedCategory, selectedItems, setSelectedItems, setSelectedItem }) => {
   const [items, setItems] = useState([]);
   // show all data without filtering on load
@@ -25,7 +27,7 @@ const Menu = ({ allItems, selectedCategory, selectedItems, setSelectedItems, set
   }, [selectedCategory]);
 
   return (
-    <div>
+    <div className="MenuContainer">
       {items.length <= 0
         ? "no items"
         : items.map((item, index) => {
