@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/diatomicC.github.io/umsikmenu/static/css/main.289aa0fe.css",
+    "main.js": "/diatomicC.github.io/umsikmenu/static/js/main.887f1347.js",
+    "static/js/453.8d30e3e7.chunk.js": "/diatomicC.github.io/umsikmenu/static/js/453.8d30e3e7.chunk.js",
+    "index.html": "/diatomicC.github.io/umsikmenu/index.html",
+    "main.289aa0fe.css.map": "/diatomicC.github.io/umsikmenu/static/css/main.289aa0fe.css.map",
+    "main.887f1347.js.map": "/diatomicC.github.io/umsikmenu/static/js/main.887f1347.js.map",
+    "453.8d30e3e7.chunk.js.map": "/diatomicC.github.io/umsikmenu/static/js/453.8d30e3e7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.289aa0fe.css",
+    "static/js/main.887f1347.js"
+  ]
+}
