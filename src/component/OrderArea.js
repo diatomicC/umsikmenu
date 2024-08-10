@@ -15,7 +15,6 @@ const OrderArea = ({ selectedItems }) => {
       style={{
         height: "100px",
         width: "100%",
-        backgroundColor: "#0008",
         position: "fixed",
         bottom: "0px",
         display: "flex",

@@ -3,18 +3,19 @@ import { useNavigate } from "react-router-dom";
 
 import "./css/LandingPage.css";
 
-function MenuDetail({ setSelectedRestrictions }) {
-  const [restrictions, setRestrictions] = useState("");
+function MenuDetail({ allRestrictions, setSelectedRestrictions }) {
   const navigate = useNavigate();
+  // handle checkbox for later usage
+  // todo
 
   return (
     <div className="LandingPage">
       <p className="Title">Samson<br/>Suta Jajang</p>
       <p className="Caution">⚠️ Select all food restrictions ⚠️</p>
       <div className="RestrictionsList">
-        {restrictions.length <= 0
+        {allRestrictions.length <= 0
           ? ""
-          : restrictions.map((restriction) => {
+          : allRestrictions.map((restriction) => {
               return (
                 <div className="Restriction">
                   <input

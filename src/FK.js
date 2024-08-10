@@ -15,6 +15,7 @@ function FK() {
   const [selectedRestrictions, setSelectedRestrictions] = useState([]);
   const [allItems, setAllItems] = useState([]);
   const [allCategories, setAllCategories] = useState([]);
+  const [allRestrictions, setAllRestrictions] = useState([]);
 
   // get all data from one csv on load
   useEffect(() => {
@@ -30,9 +31,9 @@ function FK() {
               header: 1,
             });
 
-            // console.log(`Data from ${sheetName}:`, sheetData);
             var tempDataList = [];
             var tempCatList = [];
+            var tempResList = [];
             for (let i = 1; i < sheetData.length; i++) {
               tempDataList.push({
                 category: sheetData[i][0],
@@ -45,9 +46,15 @@ function FK() {
               if (!tempCatList.includes(sheetData[i][0])) {
                 tempCatList.push(sheetData[i][0]);
               }
+              for (let j = 0; j < sheetData[i][4].split(", ").length; j++) {
+                if (!tempResList.includes(sheetData[i][4].split(", ")[j])) {
+                  tempResList.push(sheetData[i][4].split(", ")[j]);
+                }
+              }
             }
             setAllItems(tempDataList);
             setAllCategories(tempCatList);
+            setAllRestrictions(tempResList);
           } else return;
         });
       });
@@ -61,7 +68,7 @@ function FK() {
           exact
           path="/"
           element={
-            <LandingPage setSelectedRestrictions={setSelectedRestrictions} />
+            <LandingPage allRestrictions={allRestrictions} setSelectedRestrictions={setSelectedRestrictions} />
           }
         />
         <Route

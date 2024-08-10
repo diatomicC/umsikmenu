@@ -1,21 +1,26 @@
+import { useNavigate } from "react-router-dom";
+
 const Banner = () => {
+  const navigate = useNavigate();
+
   return (
     <div
       style={{
         height: "80px",
         width: "100%",
-        backgroundColor: "#0008",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      <img
-        src=""
-        alt="banner"
-        style={{ backgroundSize: "cover", backgroundPosition: "center" }}
-      />
-      <p style={{ position: "absolute", left: "25px" }}>Restaurant Name</p>
+      <button
+        style={{ position: "absolute", left: "10px", border: "none", backgroundColor: "transparent" }}
+        // todo: navigate to page depend on current page on
+        onClick={() => navigate("/")}
+      >
+        {"<"}
+      </button>
+      <p style={{ position: "absolute", left: "100px" }}>Restaurant Name</p>
       <button style={{ position: "absolute", right: "10px" }}>lang</button>
     </div>
   );
