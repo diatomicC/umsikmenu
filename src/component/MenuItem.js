@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './MenuItem.css';
+import React, { useEffect, useState } from "react";
+import "./MenuItem.css";
 
 const MenuItem = ({ name, description, price, allergens }) => {
   const [quantity, setQuantity] = useState(0);
