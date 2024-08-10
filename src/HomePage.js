@@ -7,12 +7,18 @@ import OrderArea from "./component/OrderArea";
 
 import { db } from "./index";
 
-function HomePage() {
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedLanguage, setSelectedLanguage] = useState("Korean");
-  const [selectedItem, setSelectedItem] = useState([]);
-  const [allItems, setAllItems] = useState([]);
-  const [allCategories, setAllCategories] = useState([]);
+function HomePage({
+  selectedCategory,
+  selectedLanguage,
+  selectedItem,
+  allItems,
+  allCategories,
+  setSelectedCategory,
+  setSelectedLanguage,
+  setSelectedItem,
+  setAllItems,
+  setAllCategories,
+}) {
 
   // read data on load, only run once
   useEffect(() => {
@@ -38,8 +44,13 @@ function HomePage() {
         setSelectedCategory={setSelectedCategory}
       />
       <p>{selectedCategory}</p>
-      <Menu allItems={allItems} selectedCategory={selectedCategory} selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
-      <OrderArea selectedItem={selectedItem}/>
+      <Menu
+        allItems={allItems}
+        selectedCategory={selectedCategory}
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
+      />
+      <OrderArea selectedItem={selectedItem} />
     </div>
   );
 }

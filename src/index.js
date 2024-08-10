@@ -2,10 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-import HomePage from "./HomePage";
-import MenuDetail from "./MenuDetail";
+import FK from "./FK";
 
 // Import the functions you need from the SDKs you need
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
@@ -36,13 +34,7 @@ export const db = getFirestore(app);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<HomePage/>} />
-        <Route path="/Home" element={<HomePage/>} />
-        <Route path="/MenuDetail" element={<MenuDetail/>} />
-      </Routes>
-    </Router>
+    <FK/>
   </React.StrictMode>
 );
 
