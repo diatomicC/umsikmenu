@@ -9,6 +9,13 @@ const MenuItem = ({ name, description, price, allergens }) => {
     if (quantity > 0) setQuantity(quantity - 1);
   };
 
+  const sumbitOrder = () => {
+    // todo
+    // pass order quality and item to order list
+    console.log("Order submitted: ", quantity);
+    // go back to home page
+  };
+
   return (
     <div className="menu-item">
       <div className="menu-item-details">
@@ -27,6 +34,7 @@ const MenuItem = ({ name, description, price, allergens }) => {
         <button onClick={decreaseQuantity}>-</button>
         <span>{quantity}</span>
         <button onClick={increaseQuantity}>+</button>
+        <button onClick={sumbitOrder}>Order</button>
       </div>
     </div>
   );
