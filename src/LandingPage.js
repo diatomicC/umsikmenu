@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 import "./css/LandingPage.css";
 
-function LandingPage({ allRestrictions, selectedRestrictions, setSelectedRestrictions, ToggleLanguage }) {
+function LandingPage({
+  allRestrictions,
+  selectedRestrictions,
+  setSelectedRestrictions,
+  ToggleLanguage,
+}) {
   const navigate = useNavigate();
   const [randomTableNumber, setRandomTableNumber] = useState(0);
 
@@ -19,15 +24,22 @@ function LandingPage({ allRestrictions, selectedRestrictions, setSelectedRestric
     if (target.checked) {
       setSelectedRestrictions([...selectedRestrictions, value]);
     } else {
-      setSelectedRestrictions(selectedRestrictions.filter((item) => item !== value));
+      setSelectedRestrictions(
+        selectedRestrictions.filter((item) => item !== value)
+      );
     }
   };
 
   return (
     <div className="LandingPage">
-      <button style={{ position: "absolute", right: "10px", top: "40px" }} onClick={() => {
-        ToggleLanguage();
-      }}>lang</button>
+      <button
+        style={{ position: "absolute", right: "10px", top: "40px" }}
+        onClick={() => {
+          ToggleLanguage();
+        }}
+      >
+        <img src="language.png" width={24} height={24} />
+      </button>
       <p className="Title">
         Samson
         <br />
@@ -39,15 +51,20 @@ function LandingPage({ allRestrictions, selectedRestrictions, setSelectedRestric
           ? ""
           : allRestrictions.map((restriction, index) => {
               return (
-                <div className="Restriction" key={index}>
+                <div
+                  className="Restriction"
+                  key={index}
+                  style={{ width: "100%", position: "relative" }}
+                >
+                  <label htmlFor={restriction}>{restriction}</label>
                   <input
                     type="checkbox"
                     id={restriction}
                     name={restriction}
                     value={restriction}
                     onChange={handleCheckboxChange}
+                    style={{ position: "absolute", right: "0" }}
                   />
-                  <label htmlFor={restriction}>{restriction}</label>
                 </div>
               );
             })}
@@ -60,9 +77,7 @@ function LandingPage({ allRestrictions, selectedRestrictions, setSelectedRestric
       >
         Start Ordering!
       </button>
-      <p className="TableNumber">
-        table number: {randomTableNumber}
-      </p>
+      <p className="TableNumber">table number: {randomTableNumber}</p>
     </div>
   );
 }

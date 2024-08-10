@@ -73,6 +73,23 @@ function FK() {
     });
   }, [selectedLanguage]);
 
+  // show items with no restrictions on top
+  useEffect(() => {
+    var goodList = [];
+    var badList = [];
+    allItems.forEach((item) => { 
+      selectedRestrictions.forEach(restriction => {
+        if (item.restrictions.includes(restriction)) {
+          badList.push(item);
+        }
+        else {
+          goodList.push(item);
+        }
+      });
+    });
+    setAllItems(goodList.concat(badList));
+  }, [selectedRestrictions]);
+
   // toggle language use
   const ToggleLanguage = () => {
     setSelectedLanguage((selectedLanguage + 1) % supportedLanguages.length);

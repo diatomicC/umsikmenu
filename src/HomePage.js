@@ -30,11 +30,13 @@ function HomePage({
       var tmepCatList = [];
       snapshot.docs.forEach((doc) => {
         // save feteched data to items
-        setAllItems([...allItems, doc]);
-        if (!tmepCatList.includes(doc.data().category)) {
-          tmepCatList.push(doc.data().category);
+        if (doc.data().food != null) {
+          setAllItems([...allItems, doc]);
+          if (!tmepCatList.includes(doc.data().category)) {
+            tmepCatList.push(doc.data().category);
+          }
+          setAllCategories(tmepCatList);
         }
-        setAllCategories(tmepCatList);
       });
     });
   }, []);

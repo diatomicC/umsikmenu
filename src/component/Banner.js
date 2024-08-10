@@ -28,7 +28,7 @@ const Banner = ({ ToggleLanguage }) => {
       <p style={{ position: "absolute", left: "100px" }}>Restaurant Name</p>
       <button style={{ position: "absolute", right: "10px" }} onClick={() => {
         ToggleLanguage();
-      }}>lang</button>
+      }}><img src="language.png" width={24} height={24}/></button>
     </div>
   );
 };
