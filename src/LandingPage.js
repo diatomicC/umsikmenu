@@ -16,6 +16,15 @@ function LandingPage({
     setRandomTableNumber(Math.floor(Math.random() * 100 + 1));
   }, []);
 
+  useEffect(() => {
+    const checkboxes = document.querySelectorAll(".RestrictionCheckbox");
+    checkboxes.forEach((checkbox) => {
+      if (selectedRestrictions.includes(checkbox.value)) {
+        checkbox.checked = true;
+      }
+    });
+  }, [selectedRestrictions, ]);
+
   // handle checkbox for later usage
   const handleCheckboxChange = (event) => {
     const { target } = event;
@@ -58,6 +67,7 @@ function LandingPage({
                 >
                   <label htmlFor={restriction}>{restriction}</label>
                   <input
+                    className="RestrictionCheckbox"
                     type="checkbox"
                     id={restriction}
                     name={restriction}

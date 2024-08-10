@@ -19,15 +19,39 @@ export const supportedLanguages = [
 function FK() {
   // data use
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedLanguage, setSelectedLanguage] = useState(2);
+  const [selectedLanguage, setSelectedLanguage] = useState(0);
   const [selectedItem, setSelectedItem] = useState();
   const [selectedItems, setSelectedItems] = useState([]);
-  const [selectedRestrictions, setSelectedRestrictions] = useState([]);
+  const [selectedRestrictions, setSelectedRestrictions] = useState();
   const [orderItems, setOrderItems] = useState([]);
 
   const [allItems, setAllItems] = useState([]);
   const [allCategories, setAllCategories] = useState([]);
   const [allRestrictions, setAllRestrictions] = useState([]);
+
+  // change language base on device language
+  useEffect(() => {
+    switch (navigator.language) {
+      case "ko-KR":
+        setSelectedLanguage(0);
+        break;
+      case "ja_JP":
+        setSelectedLanguage(1);
+        break;
+      case "en-US":
+        setSelectedLanguage(2);
+        break;
+      case "zh-Hans-HK":
+        setSelectedLanguage(3);
+        break;
+      case "zh-Hans-CN":
+        setSelectedLanguage(4);
+        break;
+      default:
+        setSelectedLanguage(2);
+        break;
+    }
+  }, []);
 
   // get all data from one csv on load
   useEffect(() => {
@@ -77,17 +101,27 @@ function FK() {
   useEffect(() => {
     var goodList = [];
     var badList = [];
-    allItems.forEach((item) => { 
-      selectedRestrictions.forEach(restriction => {
+    allItems.forEach((item) => {
+      selectedRestrictions.forEach((restriction) => {
         if (item.restrictions.includes(restriction)) {
           badList.push(item);
-        }
-        else {
+        } else {
           goodList.push(item);
         }
       });
     });
     setAllItems(goodList.concat(badList));
+  }, [selectedRestrictions]);
+
+  useEffect(() => {
+    setSelectedRestrictions([]);
+  }, []);
+  // save selected restrictions
+  useEffect(() => {
+    localStorage.setItem(
+      "selectedRestrictions",
+      JSON.stringify(selectedRestrictions)
+    );
   }, [selectedRestrictions]);
 
   // toggle language use

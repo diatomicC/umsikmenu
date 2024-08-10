@@ -27,7 +27,8 @@
     height: 300px;
     width: 200px;
     overflow: auto;
-    background-color: grey;
+    background-color: #eee;
+    border: 1px solid #ccc;
 }
 
 .LandingPage .StartBtn {
