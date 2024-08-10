@@ -10,11 +10,15 @@ const ItemInfo = () => {
       <div>allergens list</div>
       <div>
         <p>special order</p>
-        <input type="textbox">special order input text box</input>
+        <input
+          type="text"
+          id="specialRequest"
+          placeholder="special order input text box"
+        />
       </div>
       <div>
         <p>price</p>
-        <div>qualtity buttons</div>        
+        <div>qualtity buttons</div>
       </div>
     </>
   );

@@ -1,9 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-import HomePage from './HomePage';
+import HomePage from "./HomePage";
+import MenuDetail from "./MenuDetail";
 
 // Import the functions you need from the SDKs you need
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
@@ -23,7 +25,7 @@ const firebaseConfig = {
   storageBucket: "umsikmenu.appspot.com",
   messagingSenderId: "459338866882",
   appId: "1:459338866882:web:d1c891d662a720d72f9b5b",
-  measurementId: "G-T1ERLC6X5X"
+  measurementId: "G-T1ERLC6X5X",
 };
 
 // Initialize Firebase
@@ -31,11 +33,16 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 // const analytics = getAnalytics(app);
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <HomePage />
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<HomePage/>} />
+        <Route path="/Home" element={<HomePage/>} />
+        <Route path="/MenuDetail" element={<MenuDetail/>} />
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 
