@@ -38,6 +38,7 @@ const Menu = ({
       {items.length <= 0
         ? "no items"
         : items.map((item, index) => {
+          console.log(item);
             return (
               <MenuItem
                 key={index}

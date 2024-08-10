@@ -1,0 +1,10 @@
+.BigConfirmButton {
+    height: 50px;
+    width: 300px;
+    background-color: #D43544;
+    color: #eee;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}

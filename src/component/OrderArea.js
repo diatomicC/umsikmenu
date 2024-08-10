@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import "../css/OrderArea.css";
 
 const OrderArea = ({ selectedItems }) => {
   const [totalPrice, setTotalPrice] = useState(0);
+  const navigate = useNavigate();
+
+  // calculate total price
   useEffect(() => {
-    // todo
     var total = 0;
     selectedItems.forEach((item) => {
       total += item.price * item.quantity;
     });
     setTotalPrice(total);
   }, [selectedItems]);
+  
   return (
     <div
       style={{
@@ -22,16 +28,7 @@ const OrderArea = ({ selectedItems }) => {
         alignItems: "center",
       }}
     >
-      <button
-        style={{
-          height: "50px",
-          width: "300px",
-          backgroundColor: "#D43544",
-          color: "#eee",
-          border: "none",
-          borderRadius: "10px",
-        }}
-      >
+      <button className="BigConfirmButton" onClick={() => navigate("/ConfirmOrder")}>
         {" "}
         Order {totalPrice} Won{" "}
       </button>

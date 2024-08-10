@@ -5,6 +5,7 @@ import * as XLSX from "xlsx";
 import LandingPage from "./LandingPage";
 import HomePage from "./HomePage";
 import MenuDetail from "./MenuDetail";
+import ConfirmOrder from "./ConfirmOrder";
 
 function FK() {
   // data use
@@ -13,6 +14,8 @@ function FK() {
   const [selectedItem, setSelectedItem] = useState();
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedRestrictions, setSelectedRestrictions] = useState([]);
+  const [orderItems, setOrderItems] = useState([]);
+
   const [allItems, setAllItems] = useState([]);
   const [allCategories, setAllCategories] = useState([]);
   const [allRestrictions, setAllRestrictions] = useState([]);
@@ -90,6 +93,19 @@ function FK() {
               setSelectedItems={setSelectedItems}
               setAllItems={setAllItems}
               setAllCategories={setAllCategories}
+              selectedRestrictions={selectedRestrictions}
+            />
+          }
+        />
+        <Route
+          path="/ConfirmOrder"
+          element={
+            <ConfirmOrder
+              allItems={allItems}
+              selectedItem={selectedItem}
+              setSelectedItem={setSelectedItem}
+              selectedItems={selectedItems}
+              setSelectedItems={setSelectedItems}
               selectedRestrictions={selectedRestrictions}
             />
           }

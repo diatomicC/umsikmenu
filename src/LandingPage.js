@@ -52,9 +52,6 @@ function LandingPage({ allRestrictions, selectedRestrictions, setSelectedRestric
       <button
         className="StartBtn"
         onClick={() => {
-          selectedRestrictions.forEach(element => {
-            console.log(element);
-          });
           navigate("/Home");
         }}
       >
