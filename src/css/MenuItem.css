@@ -4,6 +4,7 @@
   align-items: center;
   padding: 15px;
   border-bottom: 1px solid #eee;
+  background-color: #eee;
 
   width: 320px;
 }
@@ -24,6 +25,8 @@
   font-size: 18px;
   margin: 0;
   color: #333;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .menu-item-description {

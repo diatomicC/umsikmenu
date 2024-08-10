@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 20px;
-    padding-top: 20px;
-    padding-bottom: 120px;
+    row-gap: 8px;
+    padding: 8px 0;
+
+    background-color: #3334;
 }

@@ -35,6 +35,8 @@ const MenuItem = ({
   };
 
   const decreaseQuantity = () => {
+    if (quantity == 0) return;
+
     var found = -1;
     selectedItems.forEach((item, index) => {
       if (item.name == name) found = index;
@@ -59,32 +61,33 @@ const MenuItem = ({
   };
 
   return (
-    <button
-      onClick={() => {
-        setSelectedItem(name);
-        navigate("/MenuDetail");
-      }}
-    >
-      <div className="menu-item">
-        <div className="menu-item-details">
-          <h2 className="menu-item-name">{name}</h2>
-          <p className="menu-item-description two-row-limit">{description}</p>
-          <div className="menu-item-allergens two-row-limit">
-            {allergens.map((allergen, index) => (
-              <span key={index} className="allergen">
-                #{allergen}
-              </span>
-            ))}
-          </div>
-          <p className="menu-item-price">{price}원</p>
+    <div className="menu-item">
+      <div className="menu-item-details">
+        <h2
+          className="menu-item-name"
+          onClick={() => {
+            setSelectedItem(name);
+            navigate("/MenuDetail");
+          }}
+        >
+          {name}
+        </h2>
+        <p className="menu-item-description two-row-limit">{description}</p>
+        <div className="menu-item-allergens two-row-limit">
+          {allergens.map((allergen, index) => (
+            <span key={index} className="allergen">
+              #{allergen}
+            </span>
+          ))}
         </div>
-        <div className="menu-item-quantity">
-          <button onClick={decreaseQuantity}>-</button>
-          <span>{quantity}</span>
-          <button onClick={increaseQuantity}>+</button>
-        </div>
+        <p className="menu-item-price">{price}원</p>
       </div>
-    </button>
+      <div className="menu-item-quantity">
+        <button onClick={decreaseQuantity}>-</button>
+        <span>{quantity}</span>
+        <button onClick={increaseQuantity}>+</button>
+      </div>
+    </div>
   );
 };
 

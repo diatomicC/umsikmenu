@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { db } from "../index";
+import "../css/ItemInfo.css";
 
 const ItemInfo = ({
   allItems,
@@ -14,7 +14,9 @@ const ItemInfo = ({
   useEffect(() => {
     // fetch item data
     allItems.forEach((item) => {
-      if (item.food == selectedItem) setItemData(item);
+      if (item.food == selectedItem) {
+        setItemData(item);
+      }
     });
   }, [selectedItem]);
 
@@ -22,7 +24,7 @@ const ItemInfo = ({
     // find if ald selected item
     var found = -1;
     selectedItems.forEach((item, index) => {
-      if (item.name == itemData.name) found = index;
+      if (item.food == itemData.food) found = index;
     });
 
     if (found != -1) {
@@ -32,16 +34,18 @@ const ItemInfo = ({
     } else {
       setSelectedItems([
         ...selectedItems,
-        { name: itemData.name, price: itemData.price, quantity: 1 },
+        { food: itemData.food, price: itemData.price, quantity: 1 },
       ]);
     }
     setQuantity(quantity + 1);
   };
 
   const decreaseQuantity = () => {
+    if (quantity == 0) return;
+
     var found = -1;
     selectedItems.forEach((item, index) => {
-      if (item.name == itemData.name) found = index;
+      if (item.food == itemData.food) found = index;
     });
 
     // if selected amount > 0, quantity - 1
@@ -63,29 +67,30 @@ const ItemInfo = ({
   };
 
   return (
-    <>
-      <div>Item Detail</div>
-      <img src="" alt="item image" />
-      <div>{itemData?.name}</div>
-      <div>{itemData?.menu_description}</div>
-      <div>{itemData?.allegen}</div>
-      <div>
-        <p>special order</p>
+    <div className="ItemInfo">
+      <img className="foodImg" src="" alt="item image" />
+      <div className="name">{itemData?.food}</div>
+      <div className="description">{itemData?.description}</div>
+      <div className="restrictions">
+        {itemData?.restrictions.map((e) => " #" + e)}
+      </div>
+      <div className="specialRequest">
+        <div>Special order:</div>
         <input
           type="text"
           id="specialRequest"
           placeholder="special order input text box"
         />
       </div>
-      <div>
-        <p>{itemData?.price}</p>
-        <div className="menu-item-quantity">
+      <div className="orderArea">
+        <p className="price">{itemData?.price}</p>
+        <div classfood="quantityBtn">
           <button onClick={decreaseQuantity}>-</button>
           <span>{quantity}</span>
           <button onClick={increaseQuantity}>+</button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

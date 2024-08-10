@@ -6,22 +6,16 @@ import OrderArea from "./component/OrderArea";
 
 function MenuDetail({
   allItems,
-  allCategories,
-  setSelectedCategory,
   selectedItem,
   selectedItems,
   setSelectedItems,
-  selectedLanguage
+  selectedLanguage,
 }) {
   return (
     <div className="MenuDetail">
       <Banner />
-      <CategorySlider
-        allCategories={allCategories}
-        setSelectedCategory={setSelectedCategory}
-      />
       <ItemInfo
-      allItems={allItems}
+        allItems={allItems}
         selectedItem={selectedItem}
         selectedItems={selectedItems}
         setSelectedItems={setSelectedItems}
