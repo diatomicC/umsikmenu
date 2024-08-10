@@ -1,30 +1,34 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./MenuItem.css";
 
 const MenuItem = ({
+  itemID,
   name,
   description,
   price,
   allergens,
-  selectedItem,
   setSelectedItem,
+  selectedItems,
+  setSelectedItems,
 }) => {
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(0);
 
   const increaseQuantity = () => {
     // find if ald selected item
     var found = -1;
-    selectedItem.forEach((item, index) => {
+    selectedItems.forEach((item, index) => {
       if (item.name == name) found = index;
     });
 
     if (found != -1) {
-      const updatedItems = [...selectedItem];
+      const updatedItems = [...selectedItems];
       updatedItems[found].quantity++;
-      setSelectedItem(updatedItems);
+      setSelectedItems(updatedItems);
     } else {
-      setSelectedItem([
-        ...selectedItem,
+      setSelectedItems([
+        ...selectedItems,
         { name: name, price: price, quantity: 1 },
       ]);
     }
@@ -33,56 +37,56 @@ const MenuItem = ({
 
   const decreaseQuantity = () => {
     var found = -1;
-    selectedItem.forEach((item, index) => {
+    selectedItems.forEach((item, index) => {
       if (item.name == name) found = index;
     });
 
     // if selected amount > 0, quantity - 1
-    const updatedItems = [...selectedItem];
+    const updatedItems = [...selectedItems];
     if (updatedItems[found].quantity - 1 > 0) {
-      const updatedItems = [...selectedItem];
+      const updatedItems = [...selectedItems];
       updatedItems[found].quantity--;
-      setSelectedItem(updatedItems);
+      setSelectedItems(updatedItems);
     }
     // remove item if selected amount <= 0
     else {
-      setSelectedItem([
-        ...selectedItem.slice(0, found),
-        ...selectedItem.slice(found + 1),
+      setSelectedItems([
+        ...selectedItems.slice(0, found),
+        ...selectedItems.slice(found + 1),
       ]);
     }
 
     setQuantity(quantity - 1);
   };
 
-  const sumbitOrder = () => {
-    // todo
-    // pass order quality and item to order list
-    console.log("Order submitted: ", quantity);
-    // go back to home page
-  };
-
   return (
-    <div className="menu-item">
-      <div className="menu-item-details">
-        <h2 className="menu-item-name">{name}</h2>
-        <p className="menu-item-description">{description}</p>
-        <div className="menu-item-allergens">
-          {allergens.map((allergen, index) => (
-            <span key={index} className="allergen">
-              #{allergen}
-            </span>
-          ))}
+    <button
+      onClick={() => {
+        console.log(itemID);
+        setSelectedItem(itemID);
+        navigate('/MenuDetail');
+      }}
+    >
+      <div className="menu-item">
+        <div className="menu-item-details">
+          <h2 className="menu-item-name">{name}</h2>
+          <p className="menu-item-description">{description}</p>
+          <div className="menu-item-allergens">
+            {allergens.map((allergen, index) => (
+              <span key={index} className="allergen">
+                #{allergen}
+              </span>
+            ))}
+          </div>
+          <p className="menu-item-price">{price}원</p>
         </div>
-        <p className="menu-item-price">{price}원</p>
+        <div className="menu-item-quantity">
+          <button onClick={decreaseQuantity}>-</button>
+          <span>{quantity}</span>
+          <button onClick={increaseQuantity}>+</button>
+        </div>
       </div>
-      <div className="menu-item-quantity">
-        <button onClick={decreaseQuantity}>-</button>
-        <span>{quantity}</span>
-        <button onClick={increaseQuantity}>+</button>
-        {/* <button onClick={sumbitOrder}>Order</button> */}
-      </div>
-    </div>
+    </button>
   );
 };
 

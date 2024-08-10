@@ -10,12 +10,13 @@ import { db } from "./index";
 function HomePage({
   selectedCategory,
   selectedLanguage,
-  selectedItem,
+  selectedItems: selectedItems,
   allItems,
   allCategories,
   setSelectedCategory,
   setSelectedLanguage,
   setSelectedItem,
+  setSelectedItems,
   setAllItems,
   setAllCategories,
 }) {
@@ -27,7 +28,7 @@ function HomePage({
       var tmepCatList = [];
       snapshot.docs.forEach((doc) => {
         // save feteched data to items
-        setAllItems([...allItems, doc.data()]);
+        setAllItems([...allItems, doc]);
         if (!tmepCatList.includes(doc.data().category)) {
           tmepCatList.push(doc.data().category);
         }
@@ -47,10 +48,11 @@ function HomePage({
       <Menu
         allItems={allItems}
         selectedCategory={selectedCategory}
-        selectedItem={selectedItem}
         setSelectedItem={setSelectedItem}
+        selectedItems={selectedItems}
+        setSelectedItems={setSelectedItems}
       />
-      <OrderArea selectedItem={selectedItem} />
+      <OrderArea selectedItems={selectedItems} />
     </div>
   );
 }

@@ -4,7 +4,14 @@ import CategorySlider from "./component/CategorySlider";
 import ItemInfo from "./component/ItemInfo";
 import OrderArea from "./component/OrderArea";
 
-function MenuDetail({allCategories, setSelectedCategory, selectedItem}) {
+function MenuDetail({
+  allCategories,
+  setSelectedCategory,
+  selectedItem,
+  selectedItems,
+  setSelectedItems,
+  selectedLanguage
+}) {
   return (
     <div className="MenuDetail">
       <Banner />
@@ -12,8 +19,13 @@ function MenuDetail({allCategories, setSelectedCategory, selectedItem}) {
         allCategories={allCategories}
         setSelectedCategory={setSelectedCategory}
       />
-      <ItemInfo />
-      <OrderArea selectedItem={selectedItem}/>
+      <ItemInfo
+        selectedItem={selectedItem}
+        selectedItems={selectedItems}
+        setSelectedItems={setSelectedItems}
+        selectedLanguage={selectedLanguage}
+      />
+      <OrderArea selectedItems={selectedItems} />
     </div>
   );
 }

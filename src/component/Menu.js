@@ -31,7 +31,7 @@ import { db } from "../index";
 //   },
 // ];
 
-const Menu = ({ allItems, selectedCategory, selectedItem, setSelectedItem }) => {
+const Menu = ({ allItems, selectedCategory, selectedItems, setSelectedItems, setSelectedItem }) => {
   const [items, setItems] = useState([]);
   // show all data without filtering on load
   useEffect(() => {
@@ -44,7 +44,7 @@ const Menu = ({ allItems, selectedCategory, selectedItem, setSelectedItem }) => 
     if (selectedCategory != "") {
       var tempList = [];
       allItems.forEach((item) => {
-        if (item.category == selectedCategory) {
+        if (item.data().category == selectedCategory) {
           tempList.push(item);
         }
       });
@@ -62,12 +62,14 @@ const Menu = ({ allItems, selectedCategory, selectedItem, setSelectedItem }) => 
             return (
               <MenuItem
                 key={index}
-                name={item.menu_name}
-                description={item.menu_description}
-                price={item.price}
-                allergens={item.allegen}
-                selectedItem={selectedItem}
+                itemID={item.id}
+                name={item.data().menu_name}
+                description={item.data().menu_description}
+                price={item.data().price}
+                allergens={item.data().allegen}
                 setSelectedItem={setSelectedItem}
+                selectedItems={selectedItems}
+                setSelectedItems={setSelectedItems}
               />
             );
           })}

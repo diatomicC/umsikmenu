@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 
-const OrderArea = ({ selectedItem }) => {
+const OrderArea = ({ selectedItems }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
     // todo
     var total = 0;
-    selectedItem.forEach((item) => {
+    selectedItems.forEach((item) => {
       total += item.price * item.quantity;
     });
     setTotalPrice(total);
-  }, [selectedItem]);
+  }, [selectedItems]);
   return (
     <div
       style={{
