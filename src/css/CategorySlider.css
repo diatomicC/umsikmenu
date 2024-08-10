@@ -1,0 +1,28 @@
+.CategorySlider {
+    height: 64px;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.CategoryCapsule {
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background-color: #eee;
+    color: #333;
+    font-size: 16px;
+
+    border: 1px solid #333e;
+}
+
+.CategoryCapsule.Selected {
+    background-color: #FF6B00;
+    color: #eee;
+}
