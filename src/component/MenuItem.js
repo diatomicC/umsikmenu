@@ -1,12 +1,58 @@
 import React, { useEffect, useState } from "react";
 import "./MenuItem.css";
 
-const MenuItem = ({ name, description, price, allergens }) => {
+const MenuItem = ({
+  name,
+  description,
+  price,
+  allergens,
+  selectedItem,
+  setSelectedItem,
+}) => {
   const [quantity, setQuantity] = useState(0);
 
-  const increaseQuantity = () => setQuantity(quantity + 1);
+  const increaseQuantity = () => {
+    // find if ald selected item
+    var found = -1;
+    selectedItem.forEach((item, index) => {
+      if (item.name == name) found = index;
+    });
+
+    if (found != -1) {
+      const updatedItems = [...selectedItem];
+      updatedItems[found].quantity++;
+      setSelectedItem(updatedItems);
+    } else {
+      setSelectedItem([
+        ...selectedItem,
+        { name: name, price: price, quantity: 1 },
+      ]);
+    }
+    setQuantity(quantity + 1);
+  };
+
   const decreaseQuantity = () => {
-    if (quantity > 0) setQuantity(quantity - 1);
+    var found = -1;
+    selectedItem.forEach((item, index) => {
+      if (item.name == name) found = index;
+    });
+
+    // if selected amount > 0, quantity - 1
+    const updatedItems = [...selectedItem];
+    if (updatedItems[found].quantity - 1 > 0) {
+      const updatedItems = [...selectedItem];
+      updatedItems[found].quantity--;
+      setSelectedItem(updatedItems);
+    }
+    // remove item if selected amount <= 0
+    else {
+      setSelectedItem([
+        ...selectedItem.slice(0, found),
+        ...selectedItem.slice(found + 1),
+      ]);
+    }
+
+    setQuantity(quantity - 1);
   };
 
   const sumbitOrder = () => {
@@ -34,7 +80,7 @@ const MenuItem = ({ name, description, price, allergens }) => {
         <button onClick={decreaseQuantity}>-</button>
         <span>{quantity}</span>
         <button onClick={increaseQuantity}>+</button>
-        <button onClick={sumbitOrder}>Order</button>
+        {/* <button onClick={sumbitOrder}>Order</button> */}
       </div>
     </div>
   );

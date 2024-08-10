@@ -5,7 +5,6 @@ export function CategoryCapsule({ catText, selectCategory }) {
     <button
       className="CategoryCapsule"
       onClick={() => {
-        console.log(catText);
         selectCategory(catText);
       }}
     >

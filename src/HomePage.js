@@ -10,6 +10,7 @@ import { db } from "./index";
 function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("Korean");
+  const [selectedItem, setSelectedItem] = useState([]);
   const [allItems, setAllItems] = useState([]);
   const [allCategories, setAllCategories] = useState([]);
 
@@ -37,8 +38,8 @@ function HomePage() {
         setSelectedCategory={setSelectedCategory}
       />
       <p>{selectedCategory}</p>
-      <Menu allItems={allItems} selectedCategory={selectedCategory} />
-      <OrderArea />
+      <Menu allItems={allItems} selectedCategory={selectedCategory} selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
+      <OrderArea selectedItem={selectedItem}/>
     </div>
   );
 }

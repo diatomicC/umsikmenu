@@ -31,10 +31,16 @@ import { db } from "../index";
 //   },
 // ];
 
-const Menu = ({ allItems, selectedCategory }) => {
+const Menu = ({ allItems, selectedCategory, selectedItem, setSelectedItem }) => {
   const [items, setItems] = useState([]);
+  // show all data without filtering on load
   useEffect(() => {
     // fetch data
+    setItems(allItems);
+  }, [allItems]);
+
+  // fetch data with selected category
+  useEffect(() => {
     if (selectedCategory != "") {
       var tempList = [];
       allItems.forEach((item) => {
@@ -43,8 +49,7 @@ const Menu = ({ allItems, selectedCategory }) => {
         }
       });
       setItems(tempList);
-    }
-    else {
+    } else {
       setItems(allItems);
     }
   }, [selectedCategory]);
@@ -61,6 +66,8 @@ const Menu = ({ allItems, selectedCategory }) => {
                 description={item.menu_description}
                 price={item.price}
                 allergens={item.allegen}
+                selectedItem={selectedItem}
+                setSelectedItem={setSelectedItem}
               />
             );
           })}

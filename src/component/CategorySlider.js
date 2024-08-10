@@ -4,13 +4,6 @@ import { CategoryCapsule } from "./CategoryCapsule";
 import "../css/CategorySlider.css";
 
 const CategorySlider = ({ allCategories, setSelectedCategory }) => {
-  const [categories, setCategories] = useState([]);
-  // fetech category from data
-  useEffect(() => {
-    // todo
-    console.log(allCategories);
-  }, [allCategories]);
-
   const selectCategory = (selected) => {
     // clear selection
     const allCat = document.querySelectorAll(".Selected");
