@@ -1,0 +1,55 @@
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.menu-item-details {
+  flex: 1;
+}
+
+.menu-item-name {
+  font-size: 18px;
+  margin: 0;
+  color: #333;
+}
+
+.menu-item-description {
+  font-size: 14px;
+  color: #888;
+  margin: 5px 0;
+}
+
+.menu-item-allergens {
+  font-size: 12px;
+  color: red;
+  margin: 5px 0;
+}
+
+.menu-item-price {
+  font-size: 16px;
+  color: #000;
+  font-weight: bold;
+}
+
+.menu-item-quantity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-item-quantity button {
+  border: 1px solid #ddd;
+  background: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.menu-item-quantity span {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
