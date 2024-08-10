@@ -3,7 +3,7 @@ import { CategoryCapsule } from "./CategoryCapsule";
 
 import "../css/CategorySlider.css";
 
-const CategorySlider = () => {
+const CategorySlider = ({ setSelectedCategory }) => {
   const [categories, setCategories] = useState([]);
   // fetech category from data
   useEffect(() => {
@@ -31,10 +31,14 @@ const CategorySlider = () => {
           break;
         }
       }
+      // todo
+      // filter selected items
+      setSelectedCategory(selected);
+    }
+    else {
+      setSelectedCategory("");
     }
 
-    // todo
-    // filter selected items
   };
 
   return (

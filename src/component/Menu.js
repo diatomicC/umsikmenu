@@ -53,7 +53,6 @@ const Menu = () => {
 
   return (
     <div>
-      <h1>추천 메뉴</h1>
       {items.length <= 0
         ? ""
         : items.map((item, index) => {

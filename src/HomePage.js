@@ -5,10 +5,12 @@ import CategorySlider from "./component/CategorySlider";
 import OrderArea from "./component/OrderArea";
 
 function HomePage() {
+  const [selectedCategory, setSelectedCategory] = React.useState("");
   return (
     <div className="HomePage" >
       <Banner />
-      <CategorySlider />
+      <CategorySlider setSelectedCategory={setSelectedCategory}/>
+      <p>{selectedCategory}</p>
       <Menu />
       <OrderArea />
     </div>
