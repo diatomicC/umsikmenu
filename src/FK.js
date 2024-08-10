@@ -1,25 +1,26 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
+import LandingPage from "./LandingPage";
 import HomePage from "./HomePage";
 import MenuDetail from "./MenuDetail";
 
 function FK() {
+  // data use
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState("Korean");
+  const [selectedItem, setSelectedItem] = useState();
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedRestrictions, setSelectedRestrictions] = useState([]);
+  const [allItems, setAllItems] = useState([]);
+  const [allCategories, setAllCategories] = useState([]);
 
-// data use
-const [selectedCategory, setSelectedCategory] = useState("");
-const [selectedLanguage, setSelectedLanguage] = useState("Korean");
-const [selectedItem, setSelectedItem] = useState();
-const [selectedItems, setSelectedItems] = useState([]);
-const [allItems, setAllItems] = useState([]);
-const [allCategories, setAllCategories] = useState([]);
-
-return (
+  return (
     <Router>
       <Routes>
+        <Route exact path="/" element={<LandingPage setSelectedRestrictions={setSelectedRestrictions}/>} />
         <Route
-          exact
-          path="/"
+          path="/Home"
           element={
             <HomePage
               selectedCategory={selectedCategory}
@@ -36,13 +37,19 @@ return (
             />
           }
         />
-        <Route path="/MenuDetail" element={<MenuDetail 
-        allCategories={allCategories}
-        setSelectedCategory={setSelectedCategory}
-        selectedItem={selectedItem}
-        selectedItems={selectedItems}
-        setSelectedItems={setSelectedItems}
-        selectedLanguage={selectedLanguage}/>} />
+        <Route
+          path="/MenuDetail"
+          element={
+            <MenuDetail
+              allCategories={allCategories}
+              setSelectedCategory={setSelectedCategory}
+              selectedItem={selectedItem}
+              selectedItems={selectedItems}
+              setSelectedItems={setSelectedItems}
+              selectedLanguage={selectedLanguage}
+            />
+          }
+        />
       </Routes>
     </Router>
   );
