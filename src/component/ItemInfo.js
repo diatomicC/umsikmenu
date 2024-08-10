@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { OrderAmountSetter } from "./OrderAmountSetter";
 
 import "../css/ItemInfo.css";
 
@@ -21,6 +22,15 @@ const ItemInfo = ({
       }
     });
   }, [selectedItem]);
+
+  // set the quantity of the item
+  useEffect(() => {
+    selectedItems.forEach((item) => {
+      if (item.name == selectedItem) {
+        setQuantity(item.quantity);
+      }
+    });
+  }, [selectedItems]);
 
   const increaseQuantity = () => {
     // find if ald selected item
@@ -81,7 +91,9 @@ const ItemInfo = ({
   return (
     <div className="ItemInfo">
       <img className="foodImg" src="" alt="item image" />
-      <div className="name">{containAllergen ? "⚠️" + itemData?.food : itemData?.food}</div>
+      <div className="name">
+        {containAllergen ? "⚠️" + itemData?.food : itemData?.food}
+      </div>
       <div className="description">{itemData?.description}</div>
       <div className="restrictions">
         {itemData?.restrictions.map((e) => " #" + e)}
@@ -95,12 +107,12 @@ const ItemInfo = ({
         />
       </div>
       <div className="orderArea">
-        <p className="price">{itemData?.price}</p>
-        <div classfood="quantityBtn">
-          <button onClick={decreaseQuantity}>-</button>
-          <span>{quantity}</span>
-          <button onClick={increaseQuantity}>+</button>
-        </div>
+        <p className="price">{"₩" + itemData?.price}</p>
+        <OrderAmountSetter
+          decreaseQuantity={decreaseQuantity}
+          increaseQuantity={increaseQuantity}
+          quantity={quantity}
+        />
       </div>
     </div>
   );

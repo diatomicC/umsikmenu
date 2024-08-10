@@ -7,10 +7,19 @@ import HomePage from "./HomePage";
 import MenuDetail from "./MenuDetail";
 import ConfirmOrder from "./ConfirmOrder";
 
+import "./css/style.css";
+export const supportedLanguages = [
+  "Korean",
+  "Japanese",
+  "English",
+  "Cantonese",
+  "Chinese",
+];
+
 function FK() {
   // data use
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedLanguage, setSelectedLanguage] = useState("English");
+  const [selectedLanguage, setSelectedLanguage] = useState(2);
   const [selectedItem, setSelectedItem] = useState();
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedRestrictions, setSelectedRestrictions] = useState([]);
@@ -28,7 +37,7 @@ function FK() {
         const workbook = XLSX.read(data, { type: "array" });
 
         workbook.SheetNames.forEach((sheetName) => {
-          if (sheetName == selectedLanguage) {
+          if (sheetName == supportedLanguages[selectedLanguage]) {
             const worksheet = workbook.Sheets[sheetName];
             const sheetData = XLSX.utils.sheet_to_json(worksheet, {
               header: 1,
@@ -62,7 +71,12 @@ function FK() {
         });
       });
     });
-  }, []);
+  }, [selectedLanguage]);
+
+  // toggle language use
+  const ToggleLanguage = () => {
+    setSelectedLanguage((selectedLanguage + 1) % supportedLanguages.length);
+  };
 
   return (
     <Router>
@@ -75,6 +89,7 @@ function FK() {
               allRestrictions={allRestrictions}
               selectedRestrictions={selectedRestrictions}
               setSelectedRestrictions={setSelectedRestrictions}
+              ToggleLanguage={ToggleLanguage}
             />
           }
         />
@@ -88,7 +103,7 @@ function FK() {
               allItems={allItems}
               allCategories={allCategories}
               setSelectedCategory={setSelectedCategory}
-              setSelectedLanguage={setSelectedLanguage}
+              ToggleLanguage={ToggleLanguage}
               setSelectedItem={setSelectedItem}
               setSelectedItems={setSelectedItems}
               setAllItems={setAllItems}
@@ -103,6 +118,7 @@ function FK() {
             <ConfirmOrder
               allItems={allItems}
               selectedItem={selectedItem}
+              ToggleLanguage={ToggleLanguage}
               setSelectedItem={setSelectedItem}
               selectedItems={selectedItems}
               setSelectedItems={setSelectedItems}
@@ -117,6 +133,7 @@ function FK() {
               allItems={allItems}
               allCategories={allCategories}
               setSelectedCategory={setSelectedCategory}
+              ToggleLanguage={ToggleLanguage}
               selectedItem={selectedItem}
               selectedItems={selectedItems}
               setSelectedItems={setSelectedItems}

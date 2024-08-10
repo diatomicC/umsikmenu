@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { OrderAmountSetter } from "./OrderAmountSetter";
+
 import "../css/MenuItem.css";
 
 const MenuItem = ({
@@ -33,12 +36,10 @@ const MenuItem = ({
     });
 
     if (found != -1) {
-      console.log("added value");
       const updatedItems = [...selectedItems];
       updatedItems[found].quantity++;
       setSelectedItems(updatedItems);
     } else {
-      console.log("created new ele");
       setSelectedItems([
         ...selectedItems,
         { name: name, price: price, quantity: 1 },
@@ -105,11 +106,16 @@ const MenuItem = ({
         </div>
         <p className="menu-item-price">{price}원</p>
       </div>
-      <div className="menu-item-quantity">
+      {/* <div className="menu-item-quantity">
         <button onClick={decreaseQuantity}>-</button>
         <span>{quantity}</span>
         <button onClick={increaseQuantity}>+</button>
-      </div>
+      </div> */}
+      <OrderAmountSetter
+        decreaseQuantity={decreaseQuantity}
+        increaseQuantity={increaseQuantity}
+        quantity={quantity}
+      />
     </div>
   );
 };

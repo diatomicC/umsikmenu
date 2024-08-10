@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const Banner = () => {
+const Banner = ({ ToggleLanguage }) => {
   const navigate = useNavigate();
 
   return (
@@ -14,14 +14,21 @@ const Banner = () => {
       }}
     >
       <button
-        style={{ position: "absolute", left: "10px", border: "none", backgroundColor: "transparent" }}
+        style={{
+          position: "absolute",
+          left: "10px",
+          border: "none",
+          backgroundColor: "transparent",
+        }}
         // todo: navigate to page depend on current page on
         onClick={() => navigate("/")}
       >
         {"<"}
       </button>
       <p style={{ position: "absolute", left: "100px" }}>Restaurant Name</p>
-      <button style={{ position: "absolute", right: "10px" }}>lang</button>
+      <button style={{ position: "absolute", right: "10px" }} onClick={() => {
+        ToggleLanguage();
+      }}>lang</button>
     </div>
   );
 };

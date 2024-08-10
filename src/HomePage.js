@@ -6,6 +6,7 @@ import CategorySlider from "./component/CategorySlider";
 import OrderArea from "./component/OrderArea";
 
 import { db } from "./index";
+import { supportedLanguages } from "./FK";
 import "./css/HomePage.css";
 
 function HomePage({
@@ -15,7 +16,7 @@ function HomePage({
   allItems,
   allCategories,
   setSelectedCategory,
-  setSelectedLanguage,
+  ToggleLanguage,
   setSelectedItem,
   setSelectedItems,
   setAllItems,
@@ -24,7 +25,7 @@ function HomePage({
 }) {
   // read data on load, only run once
   useEffect(() => {
-    const colRef = collection(db, "StoreName", "Menu", selectedLanguage); //temp
+    const colRef = collection(db, "StoreName", "Menu", supportedLanguages[selectedLanguage]); //temp
     getDocs(colRef).then((snapshot) => {
       var tmepCatList = [];
       snapshot.docs.forEach((doc) => {
@@ -40,7 +41,7 @@ function HomePage({
 
   return (
     <div className="HomePage">
-      <Banner />
+      <Banner ToggleLanguage={ToggleLanguage}/>
       <CategorySlider
         allCategories={allCategories}
         setSelectedCategory={setSelectedCategory}

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./css/LandingPage.css";
 
-function LandingPage({ allRestrictions, selectedRestrictions, setSelectedRestrictions }) {
+function LandingPage({ allRestrictions, selectedRestrictions, setSelectedRestrictions, ToggleLanguage }) {
   const navigate = useNavigate();
   const [randomTableNumber, setRandomTableNumber] = useState(0);
 
@@ -25,6 +25,9 @@ function LandingPage({ allRestrictions, selectedRestrictions, setSelectedRestric
 
   return (
     <div className="LandingPage">
+      <button style={{ position: "absolute", right: "10px", top: "40px" }} onClick={() => {
+        ToggleLanguage();
+      }}>lang</button>
       <p className="Title">
         Samson
         <br />

@@ -15,7 +15,7 @@ const OrderArea = ({ selectedItems }) => {
     });
     setTotalPrice(total);
   }, [selectedItems]);
-  
+
   return (
     <div
       style={{
@@ -28,9 +28,14 @@ const OrderArea = ({ selectedItems }) => {
         alignItems: "center",
       }}
     >
-      <button className="BigConfirmButton" onClick={() => navigate("/ConfirmOrder")}>
-        {" "}
-        Order {totalPrice} Won{" "}
+      <button
+        className="BigConfirmButton"
+        onClick={() => {
+          if (selectedItems.length > 0) navigate("/ConfirmOrder");
+            else alert("Please select at least one item");
+        }}
+      >
+        Order ₩ {totalPrice} Won{" "}
       </button>
     </div>
   );

@@ -11,10 +11,11 @@ function MenuDetail({
   setSelectedItems,
   selectedLanguage,
   selectedRestrictions,
+  ToggleLanguage,
 }) {
   return (
     <div className="MenuDetail">
-      <Banner />
+      <Banner ToggleLanguage={ToggleLanguage}/>
       <ItemInfo
         allItems={allItems}
         selectedItem={selectedItem}

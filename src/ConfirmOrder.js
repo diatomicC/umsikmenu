@@ -10,6 +10,7 @@ const ConfirmOrder = ({
   selectedItems,
   setSelectedItems,
   selectedRestrictions,
+  ToggleLanguage,
 }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [itemToPass, setItemToPass] = useState([]);
@@ -36,7 +37,7 @@ const ConfirmOrder = ({
 
   return (
     <div className="ConfirmOrder">
-      <Banner />
+      <Banner ToggleLanguage={ToggleLanguage} />
       <Menu
         allItems={itemToPass}
         selectedCategory={""}
@@ -45,7 +46,7 @@ const ConfirmOrder = ({
         setSelectedItems={setSelectedItems}
         selectedRestrictions={selectedRestrictions}
       />
-      <p>Total: {totalPrice}</p>
+      <p>Total: ₩ {totalPrice}</p>
       <p style={{ color: "red" }}>
         ⚠️ Restricted foods are present. ⚠️
         <br />
