@@ -21,14 +21,14 @@ const Banner = ({ ToggleLanguage }) => {
           backgroundColor: "transparent",
         }}
         // todo: navigate to page depend on current page on
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/umsikmenu")}
       >
         {"<"}
       </button>
       <p style={{ position: "absolute", left: "100px" }}>Restaurant Name</p>
       <button style={{ position: "absolute", right: "10px" }} onClick={() => {
         ToggleLanguage();
-      }}><img src="language.png" width={24} height={24}/></button>
+      }}><img src={process.env.PUBLIC_URL + "/language.png"} width={24} height={24}/></button>
     </div>
   );
 };

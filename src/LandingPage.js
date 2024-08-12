@@ -47,7 +47,7 @@ function LandingPage({
           ToggleLanguage();
         }}
       >
-        <img src="language.png" width={24} height={24} />
+        <img src={process.env.PUBLIC_URL + "/language.png"} width={24} height={24} />
       </button>
       <p className="Title">
         Samson

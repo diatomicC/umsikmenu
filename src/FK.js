@@ -55,7 +55,7 @@ function FK() {
 
   // get all data from one csv on load
   useEffect(() => {
-    fetch("/sample1.xlsx").then((response) => {
+    fetch(process.env.PUBLIC_URL + "/sample1.xlsx").then((response) => {
       response.arrayBuffer().then((arrayBuffer) => {
         const data = new Uint8Array(arrayBuffer);
         const workbook = XLSX.read(data, { type: "array" });
@@ -102,13 +102,17 @@ function FK() {
     var goodList = [];
     var badList = [];
     allItems.forEach((item) => {
+      var added = false;
+      
+      console.log(item);
       selectedRestrictions.forEach((restriction) => {
-        if (item.restrictions.includes(restriction)) {
-          badList.push(item);
-        } else {
-          goodList.push(item);
+        for (let i = 0; i < item.restrictions.length; i++)
+        if (item.restrictions[i] == restriction) {
+          if (!added) badList.push(item);
+          added = true;
         }
       });
+      if (!added) goodList.push(item);
     });
     setAllItems(goodList.concat(badList));
   }, [selectedRestrictions]);
@@ -134,7 +138,7 @@ function FK() {
       <Routes>
         <Route
           exact
-          path="/"
+          path="/umsikmenu"
           element={
             <LandingPage
               allRestrictions={allRestrictions}
